@@ -1,0 +1,36 @@
+///for site https://imgupscaler.com/
+
+// Upload button
+const uploadStartButton = document.evaluate(
+    "//button[contains(., 'Upload & Start')]",
+    document,
+    null,
+    XPathResult.FIRST_ORDERED_NODE_TYPE,
+    null
+).singleNodeValue;
+
+if (uploadStartButton) {
+    uploadStartButton.click();
+    console.log("Upload & Start button clicked.");
+
+    // Wait before proceeding to the download step
+    setTimeout(() => {
+        // Download button
+        const downloadButton = document.evaluate(
+            "//button[contains(., 'Download')]",
+            document,
+            null,
+            XPathResult.FIRST_ORDERED_NODE_TYPE,
+            null
+        ).singleNodeValue;
+
+        if (downloadButton) {
+            downloadButton.click();
+            console.log("Download button clicked.");
+        } else {
+            console.error("Download button not found.");
+        }
+    }, 31000); //31 sec apear like optimal timeout
+} else {
+    console.error("Upload & Start button not found.");
+}
